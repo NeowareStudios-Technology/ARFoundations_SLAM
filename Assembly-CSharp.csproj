@@ -83,6 +83,7 @@
     <Compile Include="Assets\Common\Scripts\TapHandler.cs" />
     <Compile Include="Assets\Common\Scripts\TrackableSettings.cs" />
     <Compile Include="Assets\Scripts\ARTapToPlaceObject.cs" />
+    <Compile Include="Assets\Scripts\PersistentAR.cs" />
     <Compile Include="Assets\Scripts\ScavengerHuntAR.cs" />
     <Compile Include="Assets\Scripts\ScavengerTarget.cs" />
     <None Include="Assets\Vuforia\Shaders\ColoredLines.shader" />

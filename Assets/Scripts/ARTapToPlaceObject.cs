@@ -13,6 +13,7 @@ using System.Collections.Generic;
 
 public class ARTapToPlaceObject : MonoBehaviour {
 
+    public PersistentAR persistentAR;
     //Array of gameobjects the user can place. 
     public GameObject[] objectsToPlace;
     //Max number to place
@@ -63,6 +64,7 @@ public class ARTapToPlaceObject : MonoBehaviour {
         }
 
         GameObject newObj = Instantiate(objectsToPlace[objIndex], placementPose.position, placementPose.rotation);
+        persistentAR.AddARObject();
         newObj.transform.SetParent(objHolder);
     }
 
