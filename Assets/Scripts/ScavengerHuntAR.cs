@@ -19,23 +19,27 @@ public class ScavengerHuntAR : MonoBehaviour
     public Text hintText;
     public int arIndex = 0;
 
-    // Start is called before the first frame update
     void Start()
     {
+        //Set initial ar hint to the current index, 0
         hintText.text = arHints[arIndex];
     }
 
-
+    //Unlock the next target in the array
     public void UnlockNextTarget()
     {
-        arIndex ++;
+        //Increment index
+        arIndex++;
 
-        if(arIndex >= arHints.Length)
+        //if index is greater or equal to max hints
+        if (arIndex >= arHints.Length)
         {
-       hintText.text = shComplete;
+            //Set hint text to complete text, go away
+            hintText.text = shComplete;
             return;
         }
 
-       hintText.text = arHints[arIndex];
+        //Else just update the hint text
+        hintText.text = arHints[arIndex];
     }
 }

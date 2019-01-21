@@ -1,2 +1,8 @@
 
 Temp/UnityLockfile
+*.lock
+.vs/ARFoundations_SLAM/v15/Server/sqlite3/storage.ide
+.vs/ARFoundations_SLAM/v15/Server/sqlite3/storage.ide-shm
+.vs/ARFoundations_SLAM/v15/Server/sqlite3/storage.ide-wal
+.vs/ARFoundations_SLAM/v15/.suo
+.vs/ARFoundations_SLAM/v15/.suo
