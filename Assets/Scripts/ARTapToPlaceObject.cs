@@ -64,7 +64,11 @@ public class ARTapToPlaceObject : MonoBehaviour {
         }
 
         GameObject newObj = Instantiate(objectsToPlace[objIndex], placementPose.position, placementPose.rotation);
-        persistentAR.AddARObject();
+        //Debug place
+       // GameObject newObj = Instantiate(objectsToPlace[objIndex], placementIndicator.transform.position, placementIndicator.transform.rotation);
+
+
+        persistentAR.AddARObject(objIndex, newObj.name, newObj.transform.position, newObj.transform.rotation);
         newObj.transform.SetParent(objHolder);
     }
 
@@ -79,7 +83,7 @@ public class ARTapToPlaceObject : MonoBehaviour {
         //Turn off the indicator.
         else
         {
-           // placementIndicator.SetActive(false);
+            placementIndicator.SetActive(false);
         }
     }
 

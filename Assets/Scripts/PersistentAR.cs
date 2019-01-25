@@ -20,13 +20,22 @@ public class PersistentAR : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
-            LoadARObjects();
+            arObjs = LoadARObjects();
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            if (Directory.Exists("ARObjects"))
+                DeleteARDirectory("ARObjects");
+            else
+            {
+                print("No ARObjects directory found");
+            }
         }
     }
 
-    void SaveARObjects(List<ARObject> _arObjs)
+   public void SaveARObjects(List<ARObject> _arObjs)
     {
-        print("saving");
+        print("Saving AR Objects");
 
         if (!Directory.Exists("ARObjects"))
             Directory.CreateDirectory("ARObjects");
@@ -37,28 +46,33 @@ public class PersistentAR : MonoBehaviour
         {
             File.WriteAllText("ARObjects/" + index, JsonUtility.ToJson(gO));
             index++;
-           // print(index);
+            print("" + index + JsonUtility.ToJson(gO));
         }
     }
 
-    List<ARObject> LoadARObjects()
+    public List<ARObject> LoadARObjects()
     {
-        List<ARObject> arObjs = new List<ARObject>();
+      // List<ARObject> arObjs = new List<ARObject>();
 
         if (Directory.Exists("ARObjects"))
         {
-            string[] info = Directory.GetFiles("ARObjects", "*.arObj");
+            print("Directory Found");
+            string[] info = Directory.GetFiles("ARObjects");
 
             foreach (string str in info)
             {
-            print("Directory Found");
-                arObjs.Add(JsonUtility.FromJson<ARObject>(File.ReadAllText(str)));                
+                print("Object Found");
+                arObjs.Add(JsonUtility.FromJson<ARObject>(File.ReadAllText(str)));                            
             }
+        }
+        else
+        {
+            print("No directory found.");
         }
         return arObjs;
     }
 
-    void ClearARObjects(List<ARObject> _arObjs)
+    public void ClearARObjects(List<ARObject> _arObjs)
     {
         _arObjs.Clear();
 
@@ -68,16 +82,89 @@ public class PersistentAR : MonoBehaviour
         }
     }
 
-    public void AddARObject()
+    public void LoadARObjectsButton()
+    {
+        arObjs = LoadARObjects();
+
+        for (int i = 0; i < arObjs.Count; i++)
+        {
+            string newName = arObjs[i].name;
+            Vector3 newLocation = arObjs[i].location;
+            Quaternion newRotation = arObjs[i].rotation;
+
+            GameObject newObj = Instantiate(aRTapToPlaceObject.objectsToPlace[arObjs[i].arObjNum], newLocation, newRotation);
+            newObj.transform.SetParent(aRTapToPlaceObject.objHolder);
+        }
+    }
+
+    public void SaveARObjectsButton()
+    {
+        SaveARObjects(arObjs);
+    }
+        public void ClearARObjectsButton()
+    {
+        ClearARObjects(arObjs);
+    }
+
+    public void AddARObject(int _objIndex, string _name, Vector3 _location, Quaternion _rotation)
     {
         ARObject newArObj = new ARObject();
+        newArObj.arObjNum = _objIndex;
+        newArObj.name = _name;
+        newArObj.location = _location;
+        newArObj.rotation = _rotation;
+
         arObjs.Add(newArObj);
+    }
+
+    public void DeleteARDirectory(string target_dir)
+    {
+        if (target_dir == null) return; 
+
+        string[] files = Directory.GetFiles(target_dir);
+        string[] dirs = Directory.GetDirectories(target_dir);
+
+
+        if (files == null)
+        {
+            print("No files found");
+        }
+        if (dirs == null)
+        {
+            print("No directories found");
+            return;
+        }
+        else
+        {
+            if (files != null)
+            {
+                print("Files found");
+
+                foreach (string file in files)
+                {
+                    File.SetAttributes(file, FileAttributes.Normal);
+                    File.Delete(file);
+                }
+            }
+            if (dirs != null)
+            {
+                foreach (string dir in dirs)
+                {
+                    DeleteARDirectory(dir);
+                }
+
+                Directory.Delete(target_dir, false);
+                print("Directory destroyed");
+            }
+        }
     }
 
     [System.Serializable]
     public class ARObject
     {
-        public string name;
-        public Vector3 location;
+        public int arObjNum = 0;
+        public string name = "Placeholder";
+        public Vector3 location = Vector3.zero;
+        public Quaternion rotation = Quaternion.identity;
     }
 }
