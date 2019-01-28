@@ -227,7 +227,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 326250103}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a1677cf65e4c4dd69c2c166dbe332a3, type: 3}
+  m_Script: {fileID: 11500000, guid: cd19d63097f39b745af87c310ab30644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &347910160 stripped
@@ -284,7 +284,7 @@ PrefabInstance:
     - target: {fileID: 114906711766776928, guid: e19a1438a65c942e79c50c51765da920,
         type: 3}
       propertyPath: apiKey
-      value: 
+      value: 0tj7nwns0zr2v27mdorv31qy0sqzqj77bamf1hc501kcbyfcbmkjm77bc67u9f0jce8ea5arneg9zfi3g960yvnb0v0ftr0jrnaj
       objectReference: {fileID: 0}
     - target: {fileID: 114384528983729326, guid: e19a1438a65c942e79c50c51765da920,
         type: 3}
@@ -451,6 +451,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224302025834227662, guid: a97f04f5db60b495ca9ea27aa23d89fc,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 224566284534984640, guid: a97f04f5db60b495ca9ea27aa23d89fc,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -534,10 +539,40 @@ PrefabInstance:
     - target: {fileID: 224328856467411550, guid: a97f04f5db60b495ca9ea27aa23d89fc,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.0000014067577
+      value: 0.000026414686
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a97f04f5db60b495ca9ea27aa23d89fc, type: 3}
+--- !u!1 &580171138
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 580171139}
+  m_Layer: 0
+  m_Name: DragonSpawnLoc
+  m_TagString: Untagged
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &580171139
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580171138}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &686033678 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1953550785582132, guid: e19a1438a65c942e79c50c51765da920,

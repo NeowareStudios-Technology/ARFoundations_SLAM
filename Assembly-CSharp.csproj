@@ -182,6 +182,8 @@
     <Compile Include="Assets\PlacenoteMultiplayerKit\PlacenoteMultiplayerManager\PlacenoteMultiplayerManager.cs" />
     <Compile Include="Assets\PlacenoteMultiplayerKit\PlacenoteMultiplayerManager\PlacenotePunMultiplayerBehaviour.cs" />
     <Compile Include="Assets\Scripts\ARTapToPlaceObject.cs" />
+    <Compile Include="Assets\Scripts\Dragon.cs" />
+    <Compile Include="Assets\Scripts\MultiplayerController.cs" />
     <Compile Include="Assets\Scripts\PersistentAR.cs" />
     <Compile Include="Assets\Scripts\ScavengerHuntAR.cs" />
     <Compile Include="Assets\Scripts\ScavengerTarget.cs" />
