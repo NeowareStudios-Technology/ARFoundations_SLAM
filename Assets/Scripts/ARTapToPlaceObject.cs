@@ -17,7 +17,7 @@ public class ARTapToPlaceObject : MonoBehaviour {
     //Array of gameobjects the user can place. 
     public GameObject[] objectsToPlace;
     //Max number to place
-    public int maxObjs = 20;
+    public int maxObjs = 5;
     //Array indexer to display current obj and name
     public int objIndex;
     //Text reference to display name
@@ -109,7 +109,7 @@ public class ARTapToPlaceObject : MonoBehaviour {
     //Incriments or decriments objIndex. Changing object to place.
     public void ChangeObjToPlace(int _value)
     {
-        objIndex += _value;
+        objIndex = _value;
 
         if(objIndex >= objectsToPlace.Length)
         {

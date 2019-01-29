@@ -177,6 +177,7 @@ public class PersistentAR : MonoBehaviour
             print("No ARObjects directory found");
         }
     }
+   
     //Load button, pulls info and sets in into new objects
     public void LoadARObjectsButton()
     {
@@ -194,12 +195,13 @@ public class PersistentAR : MonoBehaviour
             newObj.transform.SetParent(aRTapToPlaceObject.objHolder);
         }
     }
-
+  
     //Save ARobjects button
     public void SaveARObjectsButton()
     {
         SaveARObjects(arObjs);
     }
+    
     //Clear arobjects button
     public void ClearARObjectsButton()
     {
