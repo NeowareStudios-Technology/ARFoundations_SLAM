@@ -11,8 +11,9 @@ using UnityEngine.Experimental.XR;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class ARTapToPlaceObject : MonoBehaviour {
-
+public class ARTapToPlaceObject : MonoBehaviour
+{
+    //Ref to persistent ar
     public PersistentAR persistentAR;
     //Array of gameobjects the user can place. 
     public GameObject[] objectsToPlace;
@@ -28,47 +29,66 @@ public class ARTapToPlaceObject : MonoBehaviour {
     ARSessionOrigin arOrigin;
     Pose placementPose;
     bool placementPoseIsValid = false;
+    GameObject curSelectedObject;
+    bool isModifying = false;
+    public Text poseUpdateText;
+    public Text posUpdateTex;
 
     //Transform to place all new ar objects spawned. 
     public Transform objHolder;
+
+    public enum UserState {Placing, Modifying};
+    public UserState curUserState;
 
 	void Start ()
     {
         //Find arorigin object and set current object text to current object index within the objects to place list
         arOrigin = FindObjectOfType<ARSessionOrigin>();
         curObjText.text = objectsToPlace[objIndex].name;
+        curUserState = UserState.Placing;
 	}
-	
-	void Update ()
-    {
-        //Update pose and indicators current location
-        UpdatePlacementPose();
-        UpdatePlacementIndicator();
 
-        //Check if the area is valid, the input count is greater than 0, and touchphase is the beginning.
-        if (placementPoseIsValid && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+    void Update()
+    {
+        switch (curUserState)
         {
-            //If all parameters are met, place obj
-            if (objHolder.childCount < maxObjs)
-                PlaceObject();
+            case UserState.Placing:
+
+                //Update pose and indicators current location
+                UpdatePlacementPose();
+                UpdatePlacementIndicator();
+
+                //Check if the area is valid, the input count is greater than 0, and touchphase is the beginning.
+                if (placementPoseIsValid && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+                {
+                    //If all parameters are met, place obj
+                    if (objHolder.childCount < maxObjs)
+                        PlaceObject();
+                }
+                break;
+            case UserState.Modifying:
+                //Allow scale, rotation, repositioning
+                break;
+            default:
+                break;
         }
-	}
+    }
 
     //Places an object and sets the parent to the objectHolder
     public void PlaceObject()
     {
+        //If objholder child count is greater than max obj number. Go away.
         if (objHolder.childCount >= maxObjs)
         {
             curObjText.text = "Max number of objects placed.";
             return;
         }
 
+        //If we are still under max obj numbers, create new object based on current obj index.
         GameObject newObj = Instantiate(objectsToPlace[objIndex], placementPose.position, placementPose.rotation);
-        //Debug place
-       // GameObject newObj = Instantiate(objectsToPlace[objIndex], placementIndicator.transform.position, placementIndicator.transform.rotation);
-
-
+        //Create a new ar object that corresponds to this new obj
         persistentAR.AddARObject(objIndex, newObj.name, newObj.transform.position, newObj.transform.rotation);
+        //Set the parent to the objholder
         newObj.transform.SetParent(objHolder);
     }
 
@@ -79,29 +99,40 @@ public class ARTapToPlaceObject : MonoBehaviour {
         {
             placementIndicator.SetActive(true);
             placementIndicator.transform.SetPositionAndRotation(placementPose.position, placementPose.rotation);
+            poseUpdateText.text = "Valid Pose? " + placementPoseIsValid;
+            posUpdateTex.text = "" + placementIndicator.transform.position + " / " + placementIndicator.transform.rotation;
         }
         //Turn off the indicator.
         else
         {
             placementIndicator.SetActive(false);
+            poseUpdateText.text = "Valid Pose? " + placementPoseIsValid;
         }
     }
 
     //Cast array from main camera screenpoint out, tracks raycast to check if any trackable types were hit
     private void UpdatePlacementPose()
     {
+        //Screen center is in middle of actual viewport
         var screenCenter = Camera.main.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
+        //create list of arraycast hits
         var hits = new List<ARRaycastHit>();
+        //AR origin raycast, does it hit a plane?
         arOrigin.Raycast(screenCenter, hits, TrackableType.Planes);
 
+        //If hits are not 0, there is a valid placement location
         placementPoseIsValid = hits.Count > 0;
 
+        //If true
         if (placementPoseIsValid)
         {
+            //Set placement pose to hit location
             placementPose = hits[0].pose;
 
+            //Set camera forward and bearing
             var cameraForward = Camera.main.transform.forward;
             var cameraBearing = new Vector3(cameraForward.x, 0, cameraForward.z).normalized;
+            //Set actual rotation of object to camera rotation
             placementPose.rotation = Quaternion.LookRotation(cameraBearing);
         }
     }
@@ -109,17 +140,26 @@ public class ARTapToPlaceObject : MonoBehaviour {
     //Incriments or decriments objIndex. Changing object to place.
     public void ChangeObjToPlace(int _value)
     {
+        //Index equals new value
         objIndex = _value;
 
+        //If larger than index, set to 0
         if(objIndex >= objectsToPlace.Length)
         {
             objIndex = 0;
         }
+        //If less than 0 set to largest index in array
         if(objIndex < 0)
         {
             objIndex = objectsToPlace.Length - 1;
         }
 
+        //Set the text to current object name
         curObjText.text = objectsToPlace[objIndex].name;
+    }
+
+    public static void SelectObject(GameObject _object)
+    {
+        
     }
 }

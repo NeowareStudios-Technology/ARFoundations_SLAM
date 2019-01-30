@@ -13,6 +13,9 @@ using UnityEngine.UI;
 
 public class PersistentAR : MonoBehaviour
 {
+    //If true, show ui debug info
+    public bool debugMode = false;
+    public GameObject debugOptions;
     //Ref to arTap to place objects script and a new list of ar objects
     public ARTapToPlaceObject aRTapToPlaceObject;
     public List<ARObject> arObjs = new List<ARObject>();
@@ -209,6 +212,12 @@ public class PersistentAR : MonoBehaviour
     }
     #endregion
 
+    public void ToggleDebugMode()
+    {
+        debugMode = !debugMode;
+
+        debugOptions.SetActive(debugMode);
+    }
     //AR object class for saved object information.
     [System.Serializable]
     public class ARObject
