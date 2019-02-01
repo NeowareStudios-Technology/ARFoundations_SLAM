@@ -226,5 +226,6 @@ public class PersistentAR : MonoBehaviour
         public string name = "Placeholder";
         public Vector3 location = Vector3.zero;
         public Quaternion rotation = Quaternion.identity;
+        public Vector3 scale = Vector3.one;
     }
 }

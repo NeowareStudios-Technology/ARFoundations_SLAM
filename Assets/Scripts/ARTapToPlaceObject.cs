@@ -29,6 +29,7 @@ public class ARTapToPlaceObject : MonoBehaviour
     ARSessionOrigin arOrigin;
     Pose placementPose;
     bool placementPoseIsValid = false;
+    bool isDetecting;
     GameObject curSelectedObject;
     bool isModifying = false;
     public Text poseUpdateText;
@@ -54,6 +55,7 @@ public class ARTapToPlaceObject : MonoBehaviour
         {
             case UserState.Placing:
 
+                SetDetection(true);
                 //Update pose and indicators current location
                 UpdatePlacementPose();
                 UpdatePlacementIndicator();
@@ -67,6 +69,7 @@ public class ARTapToPlaceObject : MonoBehaviour
                 }
                 break;
             case UserState.Modifying:
+                SetDetection(false);
                 //Allow scale, rotation, repositioning
                 break;
             default:
@@ -90,6 +93,7 @@ public class ARTapToPlaceObject : MonoBehaviour
         persistentAR.AddARObject(objIndex, newObj.name, newObj.transform.position, newObj.transform.rotation);
         //Set the parent to the objholder
         newObj.transform.SetParent(objHolder);
+        SetUserState(UserState.Modifying);
     }
 
     private void UpdatePlacementIndicator()
@@ -137,6 +141,10 @@ public class ARTapToPlaceObject : MonoBehaviour
         }
     }
 
+    public void SetDetection(bool _value)
+    {
+        isDetecting = _value;
+    }
     //Incriments or decriments objIndex. Changing object to place.
     public void ChangeObjToPlace(int _value)
     {
@@ -156,6 +164,11 @@ public class ARTapToPlaceObject : MonoBehaviour
 
         //Set the text to current object name
         curObjText.text = objectsToPlace[objIndex].name;
+    }
+
+    void SetUserState(UserState _newState)
+    {
+        curUserState = _newState;
     }
 
     public static void SelectObject(GameObject _object)
