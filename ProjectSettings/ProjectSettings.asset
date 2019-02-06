@@ -150,6 +150,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.vuforia.engine.CoreSamplesUnity
+    Standalone: LWA.ARSamples
     iOS: LWA.ARSamples
   buildNumber:
     iOS: 0
@@ -169,7 +170,7 @@ PlayerSettings:
   StripUnusedMeshComponents: 0
   VertexChannelCompressionMask: 214
   iPhoneSdkVersion: 988
-  iOSTargetOSVersionString: 9.0
+  iOSTargetOSVersionString: 11.0
   tvOSSdkVersion: 0
   tvOSRequireExtendedGameController: 0
   tvOSTargetOSVersionString: 9.0
@@ -232,8 +233,8 @@ PlayerSettings:
   tvOSManualSigningProvisioningProfileID: 
   iOSManualSigningProvisioningProfileType: 0
   tvOSManualSigningProvisioningProfileType: 0
-  appleEnableAutomaticSigning: 0
-  iOSRequireARKit: 0
+  appleEnableAutomaticSigning: 2
+  iOSRequireARKit: 1
   appleEnableProMotion: 0
   clonedFromGUID: 28fe65621c139465eb80a7a9ea0e9a24
   templatePackageId: 
@@ -740,7 +741,7 @@ PlayerSettings:
     7: VUFORIA_ANDROID_SETTINGS
     14: VUFORIA_WSA_SETTINGS
   platformArchitecture:
-    iOS: 2
+    iOS: 1
   scriptingBackend:
     Android: 0
     Metro: 1
