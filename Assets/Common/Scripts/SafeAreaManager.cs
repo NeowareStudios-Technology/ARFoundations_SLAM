@@ -1,7 +1,7 @@
 ﻿/*===============================================================================
 Copyright (c) 2018 PTC Inc. All Rights Reserved.
 
-Vuforia is a trademark of PTC Inc., registered in the United States and other 
+Vuforia is a trademark of PTC Inc., registered in the United States and other
 countries.
 ===============================================================================*/
 using UnityEngine;
@@ -14,9 +14,9 @@ public class SafeAreaManager : MonoBehaviour
     [System.Serializable]
     class SafeAreaRect
     {
-        public RectTransform rectTransform;
-        public bool applyTopSafeArea;
-        public bool applyBottomSafeArea;
+        public RectTransform rectTransform = null;
+        public bool applyTopSafeArea = false;
+        public bool applyBottomSafeArea = false;
     }
 
     [SerializeField] RectTransform topArea;

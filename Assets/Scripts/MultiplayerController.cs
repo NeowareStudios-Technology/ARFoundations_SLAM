@@ -6,10 +6,9 @@ using Placenote;
 public class MultiplayerController : PlacenotePunMultiplayerBehaviour
 {
     private List<PlayerController> mPlayerList;
-     GameObject mPlayer1Base;
-     GameObject mPlayer2Base;
+     GameObject mainCastle;
 
-     GameObject dragon;
+    GameObject playerDragon;
 
     #region Singleton
     private static MultiplayerController sInstance = null;
@@ -51,30 +50,15 @@ public class MultiplayerController : PlacenotePunMultiplayerBehaviour
     /// Instantiate objects when game starts.
     protected override void OnGameStart()
     {
-        // Only instantiate player 1 base if one doesn't already exist.
-        if (mPlayer1Base == null)
-            PhotonNetwork.Instantiate("PlayerBase1", Vector3.zero, Quaternion.identity, 0);
-        // If a p1base already does exist then set it to active.
-        else
-            mPlayer1Base.gameObject.SetActive(true);
-        
-        // Only instantiate player 2 base if one doesn't already exist.
-        if (mPlayer2Base == null)
-            PhotonNetwork.Instantiate("PlayerBase2", Vector3.zero, Quaternion.identity, 0);
-        // If a p2base already does exist then set it to active.
-        else
-            mPlayer2Base.gameObject.SetActive(true);
-
-
-        // Create player
-        PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity, 0);
+        // Only instantiate castle if one doesn't already exist. From resources
+        if (mainCastle == null)
+            PhotonNetwork.Instantiate("Castle", Vector3.zero, Quaternion.identity, 0);
     }
 
     /// Reset registered objects when quiting to main menu
     protected override void OnGameQuit()
     {
-        mPlayer1Base = null;
-        mPlayer2Base = null;
+        mainCastle = null;
         mPlayerList = new List<PlayerController>();
     }
     #endregion Override functions
@@ -95,15 +79,15 @@ public class MultiplayerController : PlacenotePunMultiplayerBehaviour
     /// Hides/Shows bases based on if local client is playing or not.
     public void RegisterBase(GameObject newBase)
     {
-        mPlayer1Base = newBase;
-        mPlayer1Base.gameObject.SetActive(PlacenoteMultiplayerManager.Instance.IsPlaying);
+        mainCastle = newBase;
+        mainCastle.gameObject.SetActive(PlacenoteMultiplayerManager.Instance.IsPlaying);
     }
 
     //Register dragon
     public void RegisterDragon(GameObject newDragon)
     {
-        dragon = newDragon;
-        dragon.gameObject.SetActive(PlacenoteMultiplayerManager.Instance.IsPlaying);
+        playerDragon = newDragon;
+        playerDragon.gameObject.SetActive(PlacenoteMultiplayerManager.Instance.IsPlaying);
     }
 
 

@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 15
-  productGUID: c8b2131f226ddd741882fba49466b32f
+  productGUID: 4d672d37872a2744ea406520abeea335
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -150,7 +150,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.vuforia.engine.CoreSamplesUnity
-    iOS: com.vuforia.engine.CoreSamplesUnity
+    iOS: LWA.ARSamples
   buildNumber:
     iOS: 0
   AndroidBundleVersionCode: 1
@@ -235,7 +235,7 @@ PlayerSettings:
   appleEnableAutomaticSigning: 0
   iOSRequireARKit: 0
   appleEnableProMotion: 0
-  clonedFromGUID: cd5d48ce9299d4dd4ae15f05b2366603
+  clonedFromGUID: 28fe65621c139465eb80a7a9ea0e9a24
   templatePackageId: 
   templateDefaultScene: 
   AndroidTargetArchitectures: 5
@@ -489,7 +489,10 @@ PlayerSettings:
   - m_BuildTarget: AndroidPlayer
     m_APIs: 0b0000000800000015000000
     m_Automatic: 1
-  m_BuildTargetVRSettings: []
+  m_BuildTargetVRSettings:
+  - m_BuildTarget: iOS
+    m_Enabled: 0
+    m_Devices: []
   m_BuildTargetEnableVuforiaSettings:
   - m_BuildTarget: Android
     m_Enabled: 1

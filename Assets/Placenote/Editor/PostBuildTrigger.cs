@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using UnityEditor.Callbacks;
-//using UnityEditor.iOS.Xcode;
+using UnityEditor.iOS.Xcode;
 using System.IO;
 #if UNITY_2017_2_OR_NEWER
-//using UnityEditor.iOS.Xcode.Extensions;
+using UnityEditor.iOS.Xcode.Extensions;
 #endif
 
 public class PostBuildTrigger : MonoBehaviour 
