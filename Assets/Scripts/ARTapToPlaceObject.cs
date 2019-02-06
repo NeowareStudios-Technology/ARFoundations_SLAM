@@ -51,11 +51,6 @@ public class ARTapToPlaceObject : MonoBehaviour
 
     void Update()
     {
-        switch (curUserState)
-        {
-            case UserState.Placing:
-
-                SetDetection(true);
                 //Update pose and indicators current location
                 UpdatePlacementPose();
                 UpdatePlacementIndicator();
@@ -67,14 +62,19 @@ public class ARTapToPlaceObject : MonoBehaviour
                     if (objHolder.childCount < maxObjs)
                         PlaceObject();
                 }
-                break;
-            case UserState.Modifying:
-                SetDetection(false);
-                //Allow scale, rotation, repositioning
-                break;
-            default:
-                break;
-        }
+        //switch (curUserState)
+        //{
+        //    case UserState.Placing:
+
+        //        SetDetection(true);
+        //        break;
+        //    case UserState.Modifying:
+        //        SetDetection(false);
+        //        //Allow scale, rotation, repositioning
+        //        break;
+        //    default:
+        //        break;
+        //}
     }
 
     //Places an object and sets the parent to the objectHolder
