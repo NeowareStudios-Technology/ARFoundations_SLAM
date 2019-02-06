@@ -1649,8 +1649,8 @@ Camera:
   m_GameObject: {fileID: 589969455}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 1}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -1944,7 +1944,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3859a92a05d4f5d418cb6ca605290e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LightEstimation: 0
   m_AttemptUpdate: 1
 --- !u!4 &793466321
 Transform:
@@ -2791,7 +2790,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0.0000019073, y: 25.1}
+  m_AnchoredPosition: {x: 0.0000019073, y: 25.099976}
   m_SizeDelta: {x: 102.25, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1234939271
@@ -3241,7 +3240,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 814091571}
   m_HandleRect: {fileID: 814091570}
   m_Direction: 0
-  m_Value: 0.5018431
+  m_Value: 0.501843
   m_Size: 0.52559346
   m_NumberOfSteps: 0
   m_OnValueChanged:
