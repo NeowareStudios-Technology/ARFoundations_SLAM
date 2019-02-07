@@ -66,7 +66,7 @@ public class PersistentAR : MonoBehaviour
         {
             File.WriteAllText(persistentDirectory + "ARObjectsSlot" + curSaveSlot + "/" + index, JsonUtility.ToJson(gO));
             index++;
-            print("ARObjectsSlot" + curSaveSlot + "/" + index + JsonUtility.ToJson(gO));
+            print(persistentDirectory + "ARObjectsSlot" + curSaveSlot + "/" + index + JsonUtility.ToJson(gO));
         }
     }
 
