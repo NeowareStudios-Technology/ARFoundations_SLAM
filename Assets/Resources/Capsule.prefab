@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 8917544428289650987}
   - component: {fileID: 8917544428289650984}
   - component: {fileID: 8917544428289650985}
-  - component: {fileID: 4585690927880440217}
-  - component: {fileID: 7016471370141643148}
-  - component: {fileID: 2611944950441008967}
-  m_Layer: 0
+  - component: {fileID: 8136149115338704555}
+  - component: {fileID: 4111487319081512663}
+  - component: {fileID: 6261836496038926348}
+  - component: {fileID: 2943321509100823644}
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +96,24 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4585690927880440217
+--- !u!114 &8136149115338704555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8917544428289650966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eda371e5375f454490a86f21559ee38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IgnoreStartedOverGui: 0
+  IgnoreIsOverGui: 0
+  RequiredFingerCount: 0
+  RequiredSelectable: {fileID: 0}
+  Camera: {fileID: 0}
+--- !u!114 &4111487319081512663
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,15 +127,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IgnoreStartedOverGui: 0
   IgnoreIsOverGui: 0
-  RequiredFingerCount: 2
+  RequiredFingerCount: 0
   RequiredSelectable: {fileID: 0}
   Camera: {fileID: 0}
   WheelSensitivity: 0
   Relative: 0
   ScaleClamp: 0
-  ScaleMin: {x: 0.5, y: 0.5, z: 0.5}
+  ScaleMin: {x: 0.25, y: 0.25, z: 0.25}
   ScaleMax: {x: 1.2, y: 1.2, z: 1.2}
---- !u!114 &7016471370141643148
+--- !u!114 &6261836496038926348
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,11 +149,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IgnoreStartedOverGui: 0
   IgnoreIsOverGui: 0
-  RequiredFingerCount: 2
+  RequiredFingerCount: 0
   RequiredSelectable: {fileID: 0}
   Camera: {fileID: 0}
   Relative: 0
---- !u!114 &2611944950441008967
+--- !u!114 &2943321509100823644
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
