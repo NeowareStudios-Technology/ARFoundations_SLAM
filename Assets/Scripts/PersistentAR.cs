@@ -49,7 +49,7 @@ public class PersistentAR : MonoBehaviour
     public void SaveARObjects(List<ARObject> _arObjs)
     {
         //If no directory exist for this slot, create one
-        if (!Directory.Exists("Assets/ARObjectsSlot" + curSaveSlot))
+        if (!Directory.Exists("ARObjectsSlot" + curSaveSlot))
             Directory.CreateDirectory("Assets/ARObjectsSlot" + curSaveSlot);
 
         //Index = 0
@@ -58,7 +58,7 @@ public class PersistentAR : MonoBehaviour
         //Save each object into the save location with an index as a seperator.
         foreach (ARObject gO in _arObjs)
         {
-            File.WriteAllText("Assets/ARObjectsSlot" + curSaveSlot + "/" + index, JsonUtility.ToJson(gO));
+            File.WriteAllText("ARObjectsSlot" + curSaveSlot + "/" + index, JsonUtility.ToJson(gO));
             index++;
             print("ARObjectsSlot" + curSaveSlot + "/" + index + JsonUtility.ToJson(gO));
         }
@@ -68,11 +68,11 @@ public class PersistentAR : MonoBehaviour
     public List<ARObject> LoadARObjects()
     {
         //Try to find directory by using current save slot
-        if (Directory.Exists("Assets/ARObjectsSlot" + curSaveSlot))
+        if (Directory.Exists("ARObjectsSlot" + curSaveSlot))
         {
             print("Directory Found! Looking for objects.");
             //Get files from directory
-            string[] info = Directory.GetFiles("Assets/ARObjectsSlot" + curSaveSlot);
+            string[] info = Directory.GetFiles("ARObjectsSlot" + curSaveSlot);
 
             //Add these objects into the ar objects list
             foreach (string str in info)

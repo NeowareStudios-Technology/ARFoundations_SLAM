@@ -107,14 +107,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IgnoreStartedOverGui: 1
   IgnoreIsOverGui: 0
-  RequiredFingerCount: 0
+  RequiredFingerCount: 2
   RequiredSelectable: {fileID: 0}
   Camera: {fileID: 0}
   WheelSensitivity: 0
   Relative: 0
   ScaleClamp: 0
-  ScaleMin: {x: 0, y: 0, z: 0}
-  ScaleMax: {x: 0, y: 0, z: 0}
+  ScaleMin: {x: 0.5, y: 0.5, z: 0.5}
+  ScaleMax: {x: 1.2, y: 1.2, z: 1.2}
 --- !u!114 &3613817095616101561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IgnoreStartedOverGui: 1
   IgnoreIsOverGui: 0
-  RequiredFingerCount: 0
+  RequiredFingerCount: 2
   RequiredSelectable: {fileID: 0}
   Camera: {fileID: 0}
   Relative: 0
