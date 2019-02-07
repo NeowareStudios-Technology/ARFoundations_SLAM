@@ -10,6 +10,7 @@ using UnityEngine.XR.ARFoundation;
 using UnityEngine.Experimental.XR;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class ARTapToPlaceObject : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class ARTapToPlaceObject : MonoBehaviour
 
     //AR references used to see if placement area is valid.
     public GameObject placementIndicator;
+    public bool isDetecting;
     ARSessionOrigin arOrigin;
     Pose placementPose;
     bool placementPoseIsValid = false;
@@ -40,6 +42,7 @@ public class ARTapToPlaceObject : MonoBehaviour
         //Find arorigin object and set current object text to current object index within the objects to place list
         arOrigin = FindObjectOfType<ARSessionOrigin>();
         curObjText.text = objectsToPlace[objIndex].name;
+        isDetecting = true;
 	}
 
     void Update()
@@ -49,7 +52,7 @@ public class ARTapToPlaceObject : MonoBehaviour
                 UpdatePlacementIndicator();
 
                 //Check if the area is valid, the input count is greater than 0, and touchphase is the beginning.
-                if (placementPoseIsValid && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+                if (placementPoseIsValid && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && isDetecting && !IsPointerOverUIObject())
                 {
                     //If all parameters are met, place obj
                     if (objHolder.childCount < maxObjs)
@@ -139,5 +142,19 @@ public class ARTapToPlaceObject : MonoBehaviour
 
         //Set the text to current object name
         curObjText.text = objectsToPlace[objIndex].name;
+    }
+
+    private bool IsPointerOverUIObject()
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
+    }
+
+    public void SetDetection(bool _value)
+    {
+        isDetecting = _value;
     }
 }
