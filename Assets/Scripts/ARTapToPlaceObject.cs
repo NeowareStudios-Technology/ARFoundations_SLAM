@@ -34,6 +34,8 @@ public class ARTapToPlaceObject : MonoBehaviour
     public Text poseUpdateText;
     public Text posUpdateTex;
 
+    public enum UserMode { Placing, Modifying}
+    public UserMode userMode;
     //Transform to place all new ar objects spawned. 
     public Transform objHolder;
 
@@ -43,12 +45,17 @@ public class ARTapToPlaceObject : MonoBehaviour
         arOrigin = FindObjectOfType<ARSessionOrigin>();
         curObjText.text = objectsToPlace[objIndex].name;
         isDetecting = true;
-	}
+        SetUserMode(UserMode.Placing);
+    }
 
     void Update()
     {
-                //Update pose and indicators current location
-                UpdatePlacementPose();
+
+        switch (userMode)
+        {
+            case UserMode.Placing:
+         //Update pose and indicators current location
+        UpdatePlacementPose();
                 UpdatePlacementIndicator();
 
                 //Check if the area is valid, the input count is greater than 0, and touchphase is the beginning.
@@ -58,6 +65,13 @@ public class ARTapToPlaceObject : MonoBehaviour
                     if (objHolder.childCount < maxObjs)
                         PlaceObject();
                 }
+                break;
+            case UserMode.Modifying:
+
+                break;
+            default:
+                break;
+        }
     }
 
     //Places an object and sets the parent to the objectHolder
@@ -156,5 +170,10 @@ public class ARTapToPlaceObject : MonoBehaviour
     public void SetDetection(bool _value)
     {
         isDetecting = _value;
+    }
+
+    public void SetUserMode(UserMode _mode)
+    {
+        userMode = _mode;
     }
 }

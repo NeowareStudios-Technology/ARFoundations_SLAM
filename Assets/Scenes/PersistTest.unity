@@ -1706,7 +1706,8 @@ MonoBehaviour:
   isDetecting: 0
   poseUpdateText: {fileID: 786705136}
   posUpdateTex: {fileID: 140387843}
-  objHolder: {fileID: 862242013}
+  userMode: 0
+  objHolder: {fileID: 689737234}
 --- !u!4 &689737234
 Transform:
   m_ObjectHideFlags: 0
@@ -3098,8 +3099,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 814091571}
   m_HandleRect: {fileID: 814091570}
   m_Direction: 0
-  m_Value: 0.5018432
-  m_Size: 0.5255935
+  m_Value: 0.50184304
+  m_Size: 0.52559346
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
