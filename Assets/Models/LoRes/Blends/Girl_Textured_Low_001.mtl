@@ -1,0 +1,48 @@
+# Blender MTL File: 'Girl_Textured_Low.blend'
+# Material Count: 4
+
+newmtl Cornea
+Ns 506.250000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.0 0.0 0.0
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl EyeLashes
+Ns 506.250000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.0 0.0 0.0
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl Eye_Color
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.0 0.0 0.0
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd E:\\_BustedPixel\\_Blender\\Blender2.8\\FaceLoops\\LWA_Testing\\MedRes\\OBJ\\Girl_Eye_Med_TM.png
+map_Ns E:\\_BustedPixel\\_Blender\\Blender2.8\\FaceLoops\\LWA_Testing\\MedRes\\OBJ\\Girl_Eye_Gloss_Med.png
+
+newmtl Skin
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.0 0.0 0.0
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump -bm 1.500000 E:\\_BustedPixel\\_Blender\\Blender2.8\\FaceLoops\\LWA_Testing\\LoRes\\OBJ\\Girl_Face_NM_001.tif
+map_Kd E:\\_BustedPixel\\_Blender\\Blender2.8\\FaceLoops\\LWA_Testing\\LoRes\\OBJ\\Girl_Face_TM_001.tif
+map_Ks E:\\_BustedPixel\\_Blender\\Blender2.8\\FaceLoops\\LWA_Testing\\LoRes\\OBJ\\Girl_Face_SM_001.png
+map_Ns E:\\_BustedPixel\\_Blender\\Blender2.8\\FaceLoops\\LWA_Testing\\LoRes\\OBJ\\Girl_Face_RM_001.png
