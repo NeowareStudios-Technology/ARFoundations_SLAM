@@ -29,24 +29,17 @@ public class ARTapToPlaceObject : MonoBehaviour
     ARSessionOrigin arOrigin;
     Pose placementPose;
     bool placementPoseIsValid = false;
-    bool isDetecting;
-    GameObject curSelectedObject;
-    bool isModifying = false;
     public Text poseUpdateText;
     public Text posUpdateTex;
 
     //Transform to place all new ar objects spawned. 
     public Transform objHolder;
 
-    public enum UserState {Placing, Modifying};
-    public UserState curUserState;
-
 	void Start ()
     {
         //Find arorigin object and set current object text to current object index within the objects to place list
         arOrigin = FindObjectOfType<ARSessionOrigin>();
         curObjText.text = objectsToPlace[objIndex].name;
-        curUserState = UserState.Placing;
 	}
 
     void Update()
@@ -62,19 +55,6 @@ public class ARTapToPlaceObject : MonoBehaviour
                     if (objHolder.childCount < maxObjs)
                         PlaceObject();
                 }
-        //switch (curUserState)
-        //{
-        //    case UserState.Placing:
-
-        //        SetDetection(true);
-        //        break;
-        //    case UserState.Modifying:
-        //        SetDetection(false);
-        //        //Allow scale, rotation, repositioning
-        //        break;
-        //    default:
-        //        break;
-        //}
     }
 
     //Places an object and sets the parent to the objectHolder
@@ -93,7 +73,6 @@ public class ARTapToPlaceObject : MonoBehaviour
         persistentAR.AddARObject(objIndex, newObj.name, newObj.transform.position, newObj.transform.rotation);
         //Set the parent to the objholder
         newObj.transform.SetParent(objHolder);
-        SetUserState(UserState.Modifying);
     }
 
     private void UpdatePlacementIndicator()
@@ -118,9 +97,9 @@ public class ARTapToPlaceObject : MonoBehaviour
     private void UpdatePlacementPose()
     {
         //Screen center is in middle of actual viewport
-        var screenCenter = Camera.main.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
+        Vector3 screenCenter = Camera.main.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
         //create list of arraycast hits
-        var hits = new List<ARRaycastHit>();
+       List<ARRaycastHit> hits = new List<ARRaycastHit>();
         //AR origin raycast, does it hit a plane?
         arOrigin.Raycast(screenCenter, hits, TrackableType.Planes);
 
@@ -134,17 +113,13 @@ public class ARTapToPlaceObject : MonoBehaviour
             placementPose = hits[0].pose;
 
             //Set camera forward and bearing
-            var cameraForward = Camera.main.transform.forward;
-            var cameraBearing = new Vector3(cameraForward.x, 0, cameraForward.z).normalized;
+            Vector3 cameraForward = Camera.main.transform.forward;
+            Vector3 cameraBearing = new Vector3(cameraForward.x, 0, cameraForward.z).normalized;
             //Set actual rotation of object to camera rotation
             placementPose.rotation = Quaternion.LookRotation(cameraBearing);
         }
     }
 
-    public void SetDetection(bool _value)
-    {
-        isDetecting = _value;
-    }
     //Incriments or decriments objIndex. Changing object to place.
     public void ChangeObjToPlace(int _value)
     {
@@ -164,15 +139,5 @@ public class ARTapToPlaceObject : MonoBehaviour
 
         //Set the text to current object name
         curObjText.text = objectsToPlace[objIndex].name;
-    }
-
-    void SetUserState(UserState _newState)
-    {
-        curUserState = _newState;
-    }
-
-    public static void SelectObject(GameObject _object)
-    {
-        
     }
 }

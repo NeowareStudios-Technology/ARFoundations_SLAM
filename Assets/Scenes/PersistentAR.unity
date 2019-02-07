@@ -1711,11 +1711,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Device: 0
-  m_PoseSource: 2
+  m_PoseSource: 0
   m_PoseProviderComponent: {fileID: 0}
   m_TrackingType: 0
   m_UpdateType: 0
-  m_UseRelativeTransform: 1
+  m_UseRelativeTransform: 0
 --- !u!4 &589969459
 Transform:
   m_ObjectHideFlags: 0
@@ -1803,7 +1803,6 @@ MonoBehaviour:
   poseUpdateText: {fileID: 786705136}
   posUpdateTex: {fileID: 140387843}
   objHolder: {fileID: 212096957}
-  curUserState: 0
 --- !u!4 &689737234
 Transform:
   m_ObjectHideFlags: 0
