@@ -50,12 +50,6 @@ public class ARTapToPlaceObject : MonoBehaviour
 
     void Update()
     {
-
-        if (objHolder.childCount < maxObjs)
-        {
-
-        }
-
         switch (userMode)
         {
             case UserMode.Placing:
@@ -64,19 +58,25 @@ public class ARTapToPlaceObject : MonoBehaviour
                 UpdatePlacementIndicator();
 
                 //Check if the area is valid, the input count is greater than 0, and touchphase is the beginning.
-                if (placementPoseIsValid && Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began && isDetecting && !IsPointerOverUIObject())
+                if (placementPoseIsValid && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && isDetecting && !IsPointerOverUIObject())
                 {
                     //If all parameters are met, place obj
                     if (objHolder.childCount < maxObjs)
                         PlaceObject();
                 }
-                if (Input.touchCount >0 && Input.GetTouch(0).phase == TouchPhase.Began && !IsPointerOverUIObject())
+                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && !IsPointerOverUIObject())
                 {
-                    SetUserMode(UserMode.Modifying);
                 }
                 break;
             case UserMode.Modifying:
+                //Update pose and indicators current location
+                UpdatePlacementPose();
+                UpdatePlacementIndicator();
 
+                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && !IsPointerOverUIObject())
+                {
+                    SetUserMode(UserMode.Placing);
+                }
                 break;
             default:
                 break;
@@ -99,6 +99,7 @@ public class ARTapToPlaceObject : MonoBehaviour
         persistentAR.AddARObject(objIndex, newObj.name, newObj.transform.position, newObj.transform.rotation);
         //Set the parent to the objholder
         newObj.transform.SetParent(objHolder);
+                    SetUserMode(UserMode.Modifying);
     }
 
     private void UpdatePlacementIndicator()
