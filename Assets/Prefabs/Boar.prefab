@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8186168680673528353}
   - component: {fileID: 18162677}
   m_Layer: 8
-  m_Name: Cube
+  m_Name: Boar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IgnoreStartedOverGui: 0
   IgnoreIsOverGui: 0
-  RequiredFingerCount: 0
+  RequiredFingerCount: 2
   RequiredSelectable: {fileID: 0}
   Camera: {fileID: 0}
 --- !u!114 &187147876720502955
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IgnoreStartedOverGui: 1
   IgnoreIsOverGui: 0
-  RequiredFingerCount: 0
+  RequiredFingerCount: 2
   RequiredSelectable: {fileID: 0}
   Camera: {fileID: 0}
   Relative: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IgnoreStartedOverGui: 1
   IgnoreIsOverGui: 0
-  RequiredFingerCount: 0
+  RequiredFingerCount: 2
   RequiredSelectable: {fileID: 0}
   Camera: {fileID: 0}
   WheelSensitivity: 0

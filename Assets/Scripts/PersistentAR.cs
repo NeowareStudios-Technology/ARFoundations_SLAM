@@ -31,7 +31,7 @@ public class PersistentAR : MonoBehaviour
         //Set cur save slot to 0, set save slot text
         curSaveSlot = 0;
         saveSlotText.text = "" + curSaveSlot;
-        persistentDirectory = Application.persistentDataPath;
+        persistentDirectory = Application.dataPath + "/Raw";
         saveDirectory = Path.Combine(persistentDirectory, "SaveFolder");
     }
 
