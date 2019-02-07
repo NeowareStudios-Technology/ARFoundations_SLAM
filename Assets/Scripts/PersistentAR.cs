@@ -50,7 +50,7 @@ public class PersistentAR : MonoBehaviour
     {
         //If no directory exist for this slot, create one
         if (!Directory.Exists("ARObjectsSlot" + curSaveSlot))
-            Directory.CreateDirectory("Assets/ARObjectsSlot" + curSaveSlot);
+            Directory.CreateDirectory("ARObjectsSlot" + curSaveSlot);
 
         //Index = 0
         int index = 0;
