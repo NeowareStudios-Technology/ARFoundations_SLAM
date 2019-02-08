@@ -38,6 +38,8 @@ public class ARTapToPlaceObject : MonoBehaviour
     public UserMode userMode;
     //Transform to place all new ar objects spawned. 
     public Transform objHolder;
+    //Flag for if "place another object" capability should be active or not
+    public bool placeObjectIsActive = false;
 
 	void Start ()
     {
@@ -86,12 +88,20 @@ public class ARTapToPlaceObject : MonoBehaviour
     //Places an object and sets the parent to the objectHolder
     public void PlaceObject()
     {
+        //if an object has been placed for this selection already, do not place another
+        if (placeObjectIsActive == false)
+        {
+            Debug.Log("object NOT placed");
+            return;
+        }
+
         //If objholder child count is greater than max obj number. Go away.
         if (objHolder.childCount >= maxObjs)
         {
             curObjText.text = "Max number of objects placed.";
             return;
         }
+
 
         //If we are still under max obj numbers, create new object based on current obj index.
         GameObject newObj = Instantiate(objectsToPlace[objIndex], placementPose.position, placementPose.rotation);
@@ -100,6 +110,11 @@ public class ARTapToPlaceObject : MonoBehaviour
         //Set the parent to the objholder
         newObj.transform.SetParent(objHolder);
                     SetUserMode(UserMode.Modifying);
+
+        Debug.Log("object has been placed");
+
+        //set flag to false so that no more ar objects after the first are placed with tap
+        placeObjectIsActive = false;
     }
 
     private void UpdatePlacementIndicator()
@@ -150,6 +165,7 @@ public class ARTapToPlaceObject : MonoBehaviour
     //Incriments or decriments objIndex. Changing object to place.
     public void ChangeObjToPlace(int _value)
     {
+        placeObjectIsActive = true;
         //Index equals new value
         objIndex = _value;
 

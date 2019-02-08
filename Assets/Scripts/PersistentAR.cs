@@ -31,7 +31,8 @@ public class PersistentAR : MonoBehaviour
         //Set cur save slot to 0, set save slot text
         curSaveSlot = 0;
         saveSlotText.text = "" + curSaveSlot;
-        persistentDirectory = Application.dataPath + "/Raw";
+        persistentDirectory = Application.persistentDataPath + "/Raw";
+        Debug.Log(persistentDirectory);
         saveDirectory = Path.Combine(persistentDirectory, "SaveFolder");
     }
 
@@ -67,6 +68,7 @@ public class PersistentAR : MonoBehaviour
             File.WriteAllText(persistentDirectory + "ARObjectsSlot" + curSaveSlot + "/" + index, JsonUtility.ToJson(gO));
             index++;
             print(persistentDirectory + "ARObjectsSlot" + curSaveSlot + "/" + index + JsonUtility.ToJson(gO));
+            Debug.Log(persistentDirectory + "ARObjectsSlot" + curSaveSlot + "/" + index + JsonUtility.ToJson(gO));
         }
     }
 
@@ -77,6 +79,7 @@ public class PersistentAR : MonoBehaviour
         if (Directory.Exists(persistentDirectory + "ARObjectsSlot" + curSaveSlot))
         {
             print("Directory Found! Looking for objects.");
+            Debug.Log("Directory Found! Looking for objects.");
             //Get files from directory
             string[] info = Directory.GetFiles(persistentDirectory + "ARObjectsSlot" + curSaveSlot);
 
@@ -84,6 +87,7 @@ public class PersistentAR : MonoBehaviour
             foreach (string str in info)
             {
                 print("Object Found");
+                Debug.Log("Object Found");
                 arObjs.Add(JsonUtility.FromJson<ARObject>(File.ReadAllText(str)));
             }
         }
@@ -91,6 +95,7 @@ public class PersistentAR : MonoBehaviour
         {
             //If no directory found, tell console.
             print("No directory found.");
+            Debug.Log("No directory found");
         }
         return arObjs;
     }
